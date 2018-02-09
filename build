@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+docker-compose -p dockersf build
+
+docker stop $(docker ps -a -q)
+
+docker rm dockersf_data_1
+docker rm dockersf_db_1
+docker rm dockersf_phpmyadmin_1
+docker rm dockersf_php-fpm_1
+docker rm dockersf_composer_1
+docker rm dockersf_nginx_1
+
+docker-compose -p docker-sf up -d
+
+docker exec -ti dockersf_php-fpm_1 zsh
