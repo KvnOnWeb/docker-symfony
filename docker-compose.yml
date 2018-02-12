@@ -41,28 +41,23 @@ services:
     working_dir: /var/www/app
 
   db:
-    image: mariadb:10.1
+    image: postgres:9.5
     ports:
-        - 3306:3306
+        - 5432:5432
     environment:
-        MYSQL_USER: root
-        MYSQL_ROOT_PASSWORD: root
+        POSTGRES_USER: root
+        POSTGRES_PASSWORD: root
     volumes_from:
         - data
     networks:
         mynet:
             ipv4_address: 172.10.1.4
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: dockersf_phpmyadmin
-    links:
-        - db
-    ports:
-        - 8080:80
-    networks:
-        mynet:
-            ipv4_address: 172.10.1.5
+  adminer:
+      image: soivangoi/nginx-php-adminer-oci8
+      ports:
+        - 9090:80
+        - 9091:443
 
   data:
     image: debian
