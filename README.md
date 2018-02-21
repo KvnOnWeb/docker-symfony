@@ -6,7 +6,7 @@ Configuration
  - php-fpm (PHP 7.2)
  - nginx
  - composer
- - mariadb
+ - postgresql
 
 Installation
 ------------    
