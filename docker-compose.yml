@@ -54,10 +54,13 @@ services:
             ipv4_address: 172.10.1.4
 
   adminer:
-      image: soivangoi/nginx-php-adminer-oci8
-      ports:
+    image: soivangoi/nginx-php-adminer-oci8
+    ports:
         - 9090:80
         - 9091:443
+    networks:
+        mynet:
+            ipv4_address: 172.10.1.5
 
   data:
     image: debian
